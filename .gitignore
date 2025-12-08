@@ -1,3 +1,6 @@
+# Arquivo de variáveis de ambiente
+.env
+
 # compiled output
 /dist
 /node_modules
