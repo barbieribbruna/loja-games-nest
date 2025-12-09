@@ -86,8 +86,8 @@ export class CategoriaService {     // define a classe de serviço que contém a
                             - .delete(id) ou .delete(categoria) retornam DeleteResult, mas quero o 'void' porque não quero usar ou retornar DeleteResult, ou seja, as informações retornadas por ele (como números afetados)
                 */
 
-        const categoria = await this.findOne(id);   // busca a categoria pelo 'id' e, se ele não existir, 'findOne' lança o erro 404
-        await this.categoriaRepository.delete(categoria);   // 'await' espera o retorno e remove a categoria do banco, usando o objeto encontrado
+        await this.findOne(id);   // busca a categoria pelo 'id' e, se ele não existir, 'findOne' lança o erro 404
+        await this.categoriaRepository.delete(id);   // 'await' espera o retorno e remove a categoria do banco, usando o objeto encontrado
     }
 }
 
