@@ -23,7 +23,6 @@ import { CategoriaModule } from './categoria/categoria.module';
         }),
 
         ProdutoModule,
-
         CategoriaModule,
     ],
     controllers: [],

@@ -1,4 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from "typeorm";    // importa os 'decorators' e tipos que serão usados para definir a entidade
+import { Categoria } from "../../categoria/entities/categoria.entity";
 
 @Entity({name: 'tb_produtos'})  // diz ao TypeORM que a classe 'Produto' representa uma tabela do banco e o nome da tabela é 'tb_produtos'
 export class Produto {      // exporta a Classe Produto e cada objeto dessa classe representa um registro da tabela 'tb_produtos'
@@ -17,4 +18,6 @@ export class Produto {      // exporta a Classe Produto e cada objeto dessa clas
 
     @Column({length: 50, nullable: true})   // indica que a propriedade 'console', do tipo string, é uma coluna na tabela e no db tem um campo de texto com no máximo 50 caracteres
     console: string
+
+    categoria: Categoria;
 }
