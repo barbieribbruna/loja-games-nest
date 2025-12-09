@@ -10,11 +10,11 @@ export class ProdutoService {   // define a classe de serviço que contém a ló
 
     constructor(    // construtor
         @InjectRepository(Produto)  // injeta no serviço o repositório da entidade 'Produto', permitindo buscar, salvar, atualizar e remover do banco
-        private produtoRepository: Repository<Produto>,
+        private produtoRepository: Repository<Produto>
     ) { }
 
     /* FUNÇÃO ASYNC:
-        - o retorno é automaticamente colocado dentro de uma Promise novamente após ser chamada
+        - funções asyync sempre retornam uma Promise e qualquer valor que der return é automaticamente embrulhado dentro de uma Promise
         - então, em alguns casos, mesmo sem usar 'await', o resultado já será retornado como uma Promise para quem chamou o método
         - usa 'await' quando precisa do valor resolvido para tomar uma decisão no código (ex: if, validação, comparação, cálculo etc)
     */
@@ -48,7 +48,7 @@ export class ProdutoService {   // define a classe de serviço que contém a ló
 
     async findByNome(nome: string): Promise<Produto[]> {    // método FIND BY NOME: busca produtos pelo nome
 
-        return await this.produtoRepository.find({    // faz buscas por nome usando LIKE no SQL (busca por filtros) e retorna todos os produtos em lista
+        return this.produtoRepository.find({    // faz buscas por nome usando LIKE no SQL (busca por filtros) e retorna todos os produtos em lista
 
             where: {
                 nome: ILike(`%${nome}%`)
@@ -73,7 +73,7 @@ export class ProdutoService {   // define a classe de serviço que contém a ló
                                     - .delete(id) ou .delete(produto) retornam DeleteResult, mas quero o 'void' porque não quero usar ou retornar DeleteResult, ou seja, as informações retornadas por ele (como números afetados)
                             */
 
-        const produto = await this.findOne(id);     // busca o produto pelo 'id' e, se ele não existir, 'findOne' informar o erro 404
+        const produto = await this.findOne(id);     // busca o produto pelo 'id' e, se ele não existir, 'findOne' lança o erro 404
         await this.produtoRepository.delete(produto);   // 'await' espera o retorno e remove o produto do banco, usando o objeto encontrado
     }
 }
